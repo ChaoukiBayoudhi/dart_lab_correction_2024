@@ -4,20 +4,54 @@ int max(int x, int y){
     return x;
   return y;
 }
-//default parameters values
-int sum( {int x=2, int y=5})=>x+y;
-
 //using the arrow
 int max2(int x, int y) =>(x > y)?x:y;
+//default parameters values
+int sum2( {int x=2, int y=5})=>x+y;
+//we can call the sum2 in 4 ways:
+//1-sum2() ==> x=2, y=5
+//2-sum2(x:11) ==> x=11, y=5
+//3-sum2(y:17) ==> x=2, y=17
+//3-sum2(x:11, y:15) ==> x=11, y=15
+
+int sum3( int z,{int x=2, int y=5})=>x+y+z;
+
+List<int> removeRedundance_v1(List<int> L,int x){
+  L.removeWhere((e)=>e==x);
+  return L;
+}
+List<int> removeRedundance_v2(List<int> L,int x){
+  List<int> LRes=[];
+  for(var e in L){
+    if(e!=x)
+      LRes.add(e);
+  }
+  return LRes;
+}
+Set<int> merge_v1(Set<int> S1, Set<int> S2)  {
+ return S1.union(S2);
+}
+Set<int> merge_v2(Set<int> S1, Set<int> S2)  {
+ return {...S1,...S2};
+}
+Set<int> merge_v3(Set<int> S1, Set<int> S2)  {
+  Set<int> SRes={};
+  SRes.addAll(S1);
+  SRes.addAll(S2);
+  return SRes;
+
+}
 void main()
 {
 
   int a=12, b=33;
-  int res=sum(x:11,y:3);
+  int res=sum2(x:11,y:3);
   print("sum=$res");
-  res=sum(x:66);
+  res=sum2(x:66);
   print("sum=$res");
-  res=sum();
+  res=sum2(y:9);
+  print("sum=$res");
+  res=sum2();
   print("sum=$res");
   //int res=max2(a, b);
   //print('maximum($a,$b) = $res');
@@ -50,7 +84,7 @@ void main()
   L1.removeWhere((w)=>w%2==0);// remove all even values
   print(L1);
 
-  L1.removeRange(1, 3); //remove values between indexes 1 and 3
+  L1.removeRange(1, 3); //remove values indexes 1 and 2
   print(L1);
   L1.insert(1, 10); // add the 10 value into the idex 1
   print('Enter a float value');
