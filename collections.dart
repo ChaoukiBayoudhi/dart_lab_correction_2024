@@ -39,8 +39,30 @@ Set<int> merge_v3(Set<int> S1, Set<int> S2)  {
   SRes.addAll(S1);
   SRes.addAll(S2);
   return SRes;
-
 }
+
+//find a student by id in the studentGroup Map of Maps
+//return the student if found and null otherwise
+Map<String,dynamic>? findStudent(Map<String,Map<String,dynamic>> stGroup,int id){
+var iterator = stGroup.values.iterator;
+  while(iterator.moveNext()){
+    var student = iterator.current;
+    if(student['id'] == id)
+      return student;
+  }
+  return null;
+}
+
+//or using the for
+Map<String,dynamic>? findStudent_v2(Map<String,Map<String,dynamic>> stGroup,int id){
+  for(var student in stGroup.values){
+    if(student['id'] == id)
+      return student;
+  }
+  return null;
+}
+
+
 void main()
 {
 
@@ -57,6 +79,7 @@ void main()
   //print('maximum($a,$b) = $res');
   print('maximum($a,$b) = ${max2(a,b)}');
 
+ //List
   List<double> L1=[];//list of marks
   Set<int> S1={};//CIN values
   Map<String,int> M1={};
@@ -102,4 +125,87 @@ void main()
   S1.add(1);//ignored because set are with redundance
   //print(S1[i]);//not allowed, List is unordered collection
   print(S1);
+
+
+  //Map
+  //we can declare using
+  Map<String,int> M11={};
+  //or
+  var M22=Map();
+  Map<String,dynamic> student={
+    'id':1,
+    'name':'Mohamed',
+    'level':3,
+    'group':'BI-5',
+    'guard':15.72
+    };
+
+  //print the Map
+  print(student);
+  //access to a specific value
+  print(student['name']);
+  //update the value of the guard
+  student['guard']=15.7; //access using the key
+
+  //check if a key is on the list of keys
+  if(student.containsKey('name'))
+     print('the key is in the map');
+  //show all keys
+  print(student.keys);
+  //show all values
+  print(student.values);
+
+  //add entries to the Map
+  student['age']=20;
+  print(student);
+
+  //remove an entry
+  student.remove('level');
+  print(student);
+
+  //print number of items in the Map
+  print(student.length);
+  //verify if the map is empty
+  print("the map is empty : ${student.isEmpty}");
+  print(student.length);
+
+  //loop through a Map
+  //print only succeeded students
+  print('List of succeeded students :');
+  for(var key in student.keys)
+  {
+    if(student["guard"] >=10)
+        print('key : $key , value : ${student[key]}');
+  }
+  //or using forEach loop
+  print('List of succeeded students :');
+  student.forEach((key, value) {
+    if(student["guard"] >=10)
+      print('key : $key , value : $value');
+  });
+
+  //Complex Data Type example using Maps
+
+  var studentGroup={
+    'student1':{'id':1,'name':'Mohamed','level':3,'group':'INF-1','guard':16.72},
+    'student2':{'id':2,'name':'Ahmed','level':1,'group':'INF-2','guard':15.05},
+    'student3':{'id':3,'name':'Bochra','level':2,'group':'BI-5','guard':17.92},
+  };
+  //access to the name of the student 1
+  print(studentGroup['student1']?['name']);
+
+  //read the id from the keyboard
+  print('Enter the id of the student : ');
+  int id= int.parse(stdin.readLineSync()!);
+
+  //call the findStudent function
+  var st1=findStudent(studentGroup,id);
+  if(st1==null)
+    print('Student not found');
+  else
+  {
+    print('the student info is :');
+    print(st1);
+  }
+
 }
