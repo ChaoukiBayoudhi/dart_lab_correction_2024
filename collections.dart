@@ -29,10 +29,10 @@ List<int> removeRedundance_v2(List<int> L,int x){
   return LRes;
 }
 Set<int> merge_v1(Set<int> S1, Set<int> S2)  {
- return S1.union(S2);
+  return S1.union(S2);
 }
 Set<int> merge_v2(Set<int> S1, Set<int> S2)  {
- return {...S1,...S2};
+  return {...S1,...S2};
 }
 Set<int> merge_v3(Set<int> S1, Set<int> S2)  {
   Set<int> SRes={};
@@ -44,7 +44,7 @@ Set<int> merge_v3(Set<int> S1, Set<int> S2)  {
 //find a student by id in the studentGroup Map of Maps
 //return the student if found and null otherwise
 Map<String,dynamic>? findStudent(Map<String,Map<String,dynamic>> stGroup,int id){
-var iterator = stGroup.values.iterator;
+  var iterator = stGroup.values.iterator;
   while(iterator.moveNext()){
     var student = iterator.current;
     if(student['id'] == id)
@@ -79,7 +79,7 @@ void main()
   //print('maximum($a,$b) = $res');
   print('maximum($a,$b) = ${max2(a,b)}');
 
- //List
+  //List
   List<double> L1=[];//list of marks
   Set<int> S1={};//CIN values
   Map<String,int> M1={};
@@ -110,54 +110,65 @@ void main()
   L1.removeRange(1, 3); //remove values indexes 1 and 2
   print(L1);
   L1.insert(1, 10); // add the 10 value into the idex 1
-  print('Enter a float value');
+  /*print('Enter a float value');
   double x=double.parse(stdin.readLineSync()!);
   if(L1.contains(x))
     print('the float is in the list');
   else
     print('is not in the list');
-
+*/
 
   //set
   S1.add(1);
   S1.add(2);
   S1.add(16);
   S1.add(1);//ignored because set are with redundance
-  //print(S1[i]);//not allowed, List is unordered collection
+  //print(S1[i]);//not allowed, Set is unordered collection
   print(S1);
 
 
   //Map
   //we can declare using
   Map<String,int> M11={};
+  print('The map M11 is empty ? ${M11.isEmpty}');
+  M11["Sarra"]=3;
+  print('The map M11 is empty ? ${M11.isEmpty}');
+
   //or
-  var M22=Map();
+  var M22= Map();
   Map<String,dynamic> student={
     'id':1,
     'name':'Mohamed',
     'level':3,
     'group':'BI-5',
     'guard':15.72
-    };
+  };
 
   //print the Map
   print(student);
   //access to a specific value
   print(student['name']);
+  print('The level of the student is ${student['level']}');
   //update the value of the guard
   student['guard']=15.7; //access using the key
 
   //check if a key is on the list of keys
   if(student.containsKey('name'))
-     print('the key is in the map');
+    print('the key is in the map');
+  if(student.containsKey('latName'))
+    print('the key lastName is in the map');
+  else
+    print('the key is not on the map');
   //show all keys
   print(student.keys);
   //show all values
   print(student.values);
 
   //add entries to the Map
+  print(student);
   student['age']=20;
   print(student);
+
 
   //remove an entry
   student.remove('level');
@@ -175,7 +186,7 @@ void main()
   for(var key in student.keys)
   {
     if(student["guard"] >=10)
-        print('key : $key , value : ${student[key]}');
+      print('key : $key , value : ${student[key]}');
   }
   //or using forEach loop
   print('List of succeeded students :');
